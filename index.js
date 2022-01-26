@@ -9,8 +9,6 @@ exports.handler = async (event) => {
   );
 
   if (event.body) {
-
-
     const data = await new Promise((resolve, reject) => {
       eg.auth({
         path: '/ccu/v3/delete/url/production',
@@ -18,14 +16,13 @@ exports.handler = async (event) => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.parse(event.body)
+        body: event.body
       });
       eg.send(function(error, response) {
         if (error == null) {
           resolve({
             success: true,
-            response,
-            body: JSON.stringify(response.data),
+            body: response.data,
             error: null,
           });
         } else {
