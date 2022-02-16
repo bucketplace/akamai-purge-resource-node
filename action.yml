@@ -2,9 +2,9 @@ name: 'akamai purge resource node'
 description: 'Action template for akamai purge resource node'
 author: 'jambam <jambam-cho@github.com>'
 inputs:
-  assets_url:
+  purge_url:
     required: false
-    description: 'assets url'
+    description: 'purge_url'
   access_token:
     required: true
     description: 'access token'

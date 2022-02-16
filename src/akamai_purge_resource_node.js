@@ -1,6 +1,6 @@
 const EdgeGrid = require('akamai-edgegrid');
 
-export async function purge_resource_node(assets_url, access_token, client_token, client_secret, base_url) {
+export async function purge_resource_node(purge_url, access_token, client_token, client_secret, base_url) {
     var eg = new EdgeGrid(
         client_token,
         client_secret,
@@ -8,7 +8,7 @@ export async function purge_resource_node(assets_url, access_token, client_token
         base_url
     );
 
-    if (assets_url) {
+    if (purge_url) {
         const data = await new Promise((resolve, reject) => {
             eg.auth({
                 path: '/ccu/v3/delete/url/production',
@@ -18,7 +18,7 @@ export async function purge_resource_node(assets_url, access_token, client_token
                 },
                 body: {
                     "objects": [
-                        assets_url
+                        purge_url
                     ]
                 }
             });

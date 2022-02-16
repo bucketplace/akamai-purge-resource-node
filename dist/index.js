@@ -17792,7 +17792,7 @@ __nccwpck_require__.r(__webpack_exports__);
 /* harmony export */ });
 const EdgeGrid = __nccwpck_require__(8403);
 
-async function purge_resource_node(assets_url, access_token, client_token, client_secret, base_url) {
+async function purge_resource_node(purge_url, access_token, client_token, client_secret, base_url) {
     var eg = new EdgeGrid(
         client_token,
         client_secret,
@@ -17800,7 +17800,7 @@ async function purge_resource_node(assets_url, access_token, client_token, clien
         base_url
     );
 
-    if (assets_url) {
+    if (purge_url) {
         const data = await new Promise((resolve, reject) => {
             eg.auth({
                 path: '/ccu/v3/delete/url/production',
@@ -17810,7 +17810,7 @@ async function purge_resource_node(assets_url, access_token, client_token, clien
                 },
                 body: {
                     "objects": [
-                        assets_url
+                        purge_url
                     ]
                 }
             });
@@ -18135,14 +18135,14 @@ const akamai_purge_resource_node = __nccwpck_require__(7925);
 
 
 async function run(){
-    const assets_url = core.getInput('assets_url', {required: false})
+    const purge_url = core.getInput('purge_url', {required: false})
     const access_token = core.getInput('access_token', {required: true})
     const client_token = core.getInput('client_token', {required: true})
     const client_secret = core.getInput('client_secret', {required: true})
     const base_url = core.getInput('base_url', {required: true})
 
 
-    await akamai_purge_resource_node.purge_resource_node(assets_url, access_token, client_token, client_secret, base_url)
+    await akamai_purge_resource_node.purge_resource_node(purge_url, access_token, client_token, client_secret, base_url)
 
 }
 
