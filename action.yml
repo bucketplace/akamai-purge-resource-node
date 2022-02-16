@@ -1,0 +1,22 @@
+name: 'akamai purge resource node'
+description: 'Action template for akamai purge resource node'
+author: 'jambam <jambam-cho@github.com>'
+inputs:
+  assets_url:
+    required: false
+    description: 'assets url'
+  access_token:
+    required: true
+    description: 'access token'
+  client_token:
+    required: true
+    description: 'client token'
+  client_secret:
+    required: true
+    description: 'client secret'
+  base_url:
+    required: true
+    description: 'base url'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
