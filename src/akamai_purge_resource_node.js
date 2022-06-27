@@ -1,7 +1,7 @@
 const EdgeGrid = require('akamai-edgegrid');
 
 export async function purge_resource_node(purge_url, access_token, client_token, client_secret, base_url) {
-    var eg = new EdgeGrid(
+    const eg = new EdgeGrid(
         client_token,
         client_secret,
         access_token,
@@ -16,20 +16,22 @@ export async function purge_resource_node(purge_url, access_token, client_token,
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: {
+                body: JSON.stringify({
                     "objects": [
                         purge_url
                     ]
-                }
+                })
             });
             eg.send(function(error, response) {
                 if (error == null) {
+                    console.log('akamai cache purge is completed.')
                     resolve({
                         success: true,
                         body: response.data,
                         error: null,
                     });
                 } else {
+                    console.log('Fakamai cache purge is failed.')
                     reject({
                         success: false,
                         error
